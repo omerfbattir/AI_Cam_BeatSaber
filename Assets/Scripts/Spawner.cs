@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,7 +9,7 @@ public class Spawner : MonoBehaviour
     public int freq = 0;
     public FFTWindow fftWindow;
     public float debugSamples;
-    private bool spawneable = true;
+    public bool spawneable = true;
 
     public string path;
 
@@ -18,29 +17,23 @@ public class Spawner : MonoBehaviour
     
     private void FixedUpdate()
     {
-        
         AudioListener.GetSpectrumData(samples, 0, fftWindow);
 
         debugSamples = samples[freq];
         if (samples[freq] > spawnTreshold && spawneable)
         {
+            int random = Random.Range(0, 4);
+            GameObject obj = new GameObject();
+            obj = Instantiate(prefab, transform.position, Quaternion.Euler(Vector3.forward * 90 * random));
+            obj.GetComponent<CubeMenager>().path = path;
+            obj.GetComponent<CubeMenager>().dir = random;
+            spawneable = false;
             StartCoroutine(spawn());
         }
     }
 
-    private void LateUpdate()
-    {
-        spawneable = true;
-    }
-
     IEnumerator spawn()
     {
-        int random = Random.Range(0, 4);
-        GameObject obj = new GameObject();
-        obj = Instantiate(prefab, transform.position, Quaternion.Euler(Vector3.forward * 90 * random));
-        obj.GetComponent<CubeMenager>().path = path;
-        obj.GetComponent<CubeMenager>().dir = random;
-        spawneable = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(10f);
     }
 }

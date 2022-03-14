@@ -3,15 +3,20 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] public Vector2 leftInput = Vector2.zero, rightInput = Vector2.zero;
+    private bool isPlaying;
 
     private void Update()
     {
         leftInput = LeftInput();
         rightInput = RightInput();
 
-        if (FindObjectOfType<CubeMenager>() == null) return;
-        if (FindObjectOfType<CubeMenager>().path == "Left") FindObjectOfType<CubeMenager>().playerInput = leftInput;
-        if (FindObjectOfType<CubeMenager>().path == "Right") FindObjectOfType<CubeMenager>().playerInput = rightInput;
+        if (Input.GetKey(KeyCode.Space) && !isPlaying)
+        {
+            Camera.main.GetComponent<AudioSource>().Play();
+            isPlaying = true;
+        }
+
+        if (Input.GetKey(KeyCode.Escape)) Application.Quit();
     }
 
     Vector2 RightInput()
@@ -23,7 +28,7 @@ public class PlayerInput : MonoBehaviour
         else rightVertical = 0;
 
         if (Input.GetKey(KeyCode.L)) rightHorizontal = 1; 
-        else if (Input.GetKey(KeyCode.W)) rightHorizontal = -1;
+        else if (Input.GetKey(KeyCode.J)) rightHorizontal = -1;
         else rightHorizontal = 0;
 
         return new Vector2(rightHorizontal, rightVertical);

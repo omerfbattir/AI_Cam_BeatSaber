@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 public class CubeMenager : MonoBehaviour
 {
-    private bool isSliceable;
+    public bool isSliceable = false;
     private Vector2 sliceDir = Vector2.zero;
     public Vector2 playerInput = new Vector2();
     
@@ -15,49 +14,46 @@ public class CubeMenager : MonoBehaviour
     private void FixedUpdate()
     {
         transform.Translate(Vector3.back * Time.deltaTime * speed);
-        
-        //if (path == "left") playerInput = PlayerInput.instance.leftInput;
-        //if (path == "right") playerInput = PlayerInput.instance.rightInput;
 
-        if (sliceDir == playerInput)
-        {
-            print("hll");
-        }
         if (isSliceable && sliceDir == playerInput)
         {
-            Kill();
+            Destroy(gameObject);
+            print("fckd");
+            Destroy(gameObject);
         }
     }
 
     private void Update()
     {
+        if (path == "Left") playerInput = FindObjectOfType<PlayerInput>().leftInput;
+        if (path == "Right") playerInput = FindObjectOfType<PlayerInput>().rightInput;
+        
         switch (dir)
         {
             case 0:
                 sliceDir = Vector2.up;
                 break;
             case 1:
-                sliceDir = Vector2.right;
+                sliceDir = Vector2.left;
                 break;
             case 2:
                 sliceDir = Vector2.down;
                 break;
             case 3:
-                sliceDir = Vector2.left;
+                sliceDir = Vector2.right;
                 break;
         }
-        print(sliceDir);
-    }
-
-    void Kill()
-    {
-        FindObjectOfType<PlayerStats>().point++;
-        Destroy(gameObject);
+        print("PI:"+playerInput +"SD:"+sliceDir);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Collider")) isSliceable = true;
+        if(other.CompareTag("Collider")) isSliceable = true;
         if(other.CompareTag("backline")) Destroy(gameObject);
+        if (other.CompareTag("SpawnLine"))
+        { 
+            FindObjectsOfType<Spawner>()[0].spawneable = true;
+            FindObjectsOfType<Spawner>()[1].spawneable = true;
+        }
     }
 }
