@@ -1,0 +1,4 @@
+﻿TODO: spawn obj 
+TODO: add point
+TODO: add 4 axis slice 
+TODO: kill obj 
