@@ -28,12 +28,6 @@ public class Spawner : MonoBehaviour
             obj.GetComponent<CubeMenager>().path = path;
             obj.GetComponent<CubeMenager>().dir = random;
             spawneable = false;
-            StartCoroutine(spawn());
         }
-    }
-
-    IEnumerator spawn()
-    {
-        yield return new WaitForSeconds(10f);
     }
 }

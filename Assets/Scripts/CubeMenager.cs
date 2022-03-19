@@ -1,7 +1,13 @@
+using EZCameraShake;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class CubeMenager : MonoBehaviour
 {
+    public GameObject particle;
+    public Material green;
+    public GameObject prism;
+    
     public bool isSliceable = false;
     private Vector2 sliceDir = Vector2.zero;
     public Vector2 playerInput = new Vector2();
@@ -17,9 +23,7 @@ public class CubeMenager : MonoBehaviour
 
         if (isSliceable && sliceDir == playerInput)
         {
-            Destroy(gameObject);
-            print("fckd");
-            Destroy(gameObject);
+            Kill();
         }
     }
 
@@ -48,12 +52,24 @@ public class CubeMenager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Collider")) isSliceable = true;
+        if(other.CompareTag("Collider"))
+        {
+            isSliceable = true;
+            prism.GetComponent<MeshRenderer>().material = green;
+        }
         if(other.CompareTag("backline")) Destroy(gameObject);
         if (other.CompareTag("SpawnLine"))
         { 
             FindObjectsOfType<Spawner>()[0].spawneable = true;
             FindObjectsOfType<Spawner>()[1].spawneable = true;
+            FindObjectOfType<spawnertwo>().spawneable = true;
         }
+    }
+
+    void Kill()
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
+        CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f); //TODO: 
+        Destroy(gameObject);
     }
 }
