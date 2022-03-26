@@ -30,4 +30,5 @@ public class Spawner : MonoBehaviour
             spawneable = false;
         }
     }
+    
 }

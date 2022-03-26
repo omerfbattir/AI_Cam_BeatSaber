@@ -47,7 +47,6 @@ public class CubeMenager : MonoBehaviour
                 sliceDir = Vector2.right;
                 break;
         }
-        print("PI:"+playerInput +"SD:"+sliceDir);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,7 +68,8 @@ public class CubeMenager : MonoBehaviour
     void Kill()
     {
         Instantiate(particle, transform.position, Quaternion.identity);
-        CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f); //TODO: 
+        CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, 1f);
+        FindObjectOfType<PlayerStats>().point++;
         Destroy(gameObject);
     }
 }

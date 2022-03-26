@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] public Vector2 leftInput = Vector2.zero, rightInput = Vector2.zero;
-    private bool isPlaying;
+    public bool isPlaying;
 
     private void Update()
     {
@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && !isPlaying)
         {
-            Camera.main.GetComponent<AudioSource>().Play();
+            FindObjectOfType<MusicMenager>().activeSong.GetComponent<AudioSource>().Play();
             isPlaying = true;
         }
 
