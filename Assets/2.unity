@@ -6302,6 +6302,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &217873275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7975377754367768757, guid: bc386b91d81130249a3900282f2379c3, type: 3}
+  m_PrefabInstance: {fileID: 7975377753105357344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &287909058
 Mesh:
   m_ObjectHideFlags: 0
@@ -19247,6 +19252,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &941441898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 798431079470420838, guid: 094e37291da91ab4186250c500b08a8f, type: 3}
+  m_PrefabInstance: {fileID: 798431080777325159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &990887843
 Mesh:
   m_ObjectHideFlags: 0
@@ -36541,9 +36551,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 2114879804}
+  - {fileID: 217873275}
   - {fileID: 1260224461}
   - {fileID: 2079521803}
+  - {fileID: 941441898}
   activeSong: {fileID: 0}
 --- !u!1 &1871173976
 GameObject:
@@ -39756,11 +39767,6 @@ Mesh:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5466533878512647608, guid: c86c595d2bfd1d348b064d2960211f99, type: 3}
   m_PrefabInstance: {fileID: 5466533876519174579}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2114879804 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7975377754367768757, guid: bc386b91d81130249a3900282f2379c3, type: 3}
-  m_PrefabInstance: {fileID: 7975377753105357344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2133354060
 GameObject:
